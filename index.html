@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Right or Left</title>
+<meta name="description" content="A 24-question map of American politics in 2026: economic and authority axes, plus a cultural reading.">
+<meta property="og:title" content="Right or Left">
+<meta property="og:description" content="24 questions on the issues dividing America. Find your position on two axes.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { var t = localStorage.getItem("rol-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="./" aria-label="Right or Left home">
+    <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+    <span class="brand-name">Right&nbsp;or&nbsp;Left</span>
+  </a>
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle color theme">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>
+  </button>
+</header>
+
+<main id="app">
+
+  <!-- Intro -->
+  <section id="intro" class="screen is-active" aria-labelledby="introTitle">
+    <div class="intro-grid">
+      <div class="intro-copy">
+        <p class="kicker">24 questions &middot; 2026 edition &middot; United States</p>
+        <h1 id="introTitle" class="mega">
+          <span class="riso w1">Right</span>
+          <span class="riso w2">or</span>
+          <span class="riso w3">Left?</span>
+        </h1>
+        <p class="lede">Twenty-four questions on the fights dominating American politics right now, from deportations and tariffs to puberty blockers and AI. The result places you on two axes, economic and authority, with a separate reading for culture.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="startBtn" type="button">Start the quiz <span aria-hidden="true">&rarr;</span></button>
+          <span class="meta">About 4 minutes &middot; No sign-up &middot; Nothing leaves your browser</span>
+        </div>
+      </div>
+      <div class="intro-art" aria-hidden="true">
+        <div class="blob blob-a"></div>
+        <div class="blob blob-b"></div>
+        <svg class="mini-compass" viewBox="0 0 200 200">
+          <rect x="10" y="10" width="180" height="180" rx="6" class="mc-frame"/>
+          <line x1="100" y1="10" x2="100" y2="190" class="mc-axis"/>
+          <line x1="10" y1="100" x2="190" y2="100" class="mc-axis"/>
+          <circle class="mc-dot d1" r="6"/><circle class="mc-dot d2" r="6"/><circle class="mc-dot d3" r="6"/><circle class="mc-dot d4" r="6"/><circle class="mc-dot d5" r="8"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="axis-cards">
+      <article class="axis-card">
+        <p class="axis-tag">Axis 01 &middot; horizontal</p>
+        <h2>Economic</h2>
+        <p class="poles"><span class="pole neg">State</span><span class="arrow"></span><span class="pole pos">Market</span></p>
+        <p>How much government should manage wealth, wages and markets.</p>
+      </article>
+      <article class="axis-card">
+        <p class="axis-tag">Axis 02 &middot; vertical</p>
+        <h2>Authority</h2>
+        <p class="poles"><span class="pole neg">Libertarian</span><span class="arrow"></span><span class="pole pos">Authoritarian</span></p>
+        <p>How far state power should go to enforce rules, whichever side writes them.</p>
+      </article>
+      <article class="axis-card">
+        <p class="axis-tag">Reading &middot; separate</p>
+        <h2>Culture</h2>
+        <p class="poles"><span class="pole neg">Progressive</span><span class="arrow"></span><span class="pole pos">Traditional</span></p>
+        <p>Views on gender, race, religion and national identity, scored on their own.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Quiz -->
+  <section id="quiz" class="screen" aria-label="Quiz">
+    <div class="quiz-head">
+      <button class="link-btn" id="backBtn" type="button"><span aria-hidden="true">&larr;</span> Back</button>
+      <p class="counter"><span id="qNum">01</span><span class="of">/ 24</span></p>
+      <button class="link-btn" id="quitBtn" type="button">Restart</button>
+    </div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <div class="card-stage">
+      <article class="qcard" id="qcard" aria-live="polite">
+        <p class="issue-chip" id="qIssue">Issue</p>
+        <h2 class="qtext" id="qText">Question</h2>
+        <div class="stamp" id="stamp" aria-hidden="true"></div>
+      </article>
+    </div>
+
+    <div class="answers" id="answers" role="group" aria-label="Answer options"></div>
+    <p class="hint">Keyboard: press <kbd>1</kbd>&ndash;<kbd>5</kbd> to answer, <kbd>Backspace</kbd> to go back.</p>
+  </section>
+
+  <!-- Calculating -->
+  <section id="calc" class="screen" aria-live="polite">
+    <div class="calc-box">
+      <p class="kicker">Tallying</p>
+      <h2 class="calc-title">Counting your ballots&hellip;</h2>
+      <div class="calc-bars"><span></span><span></span><span></span></div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="screen" aria-labelledby="typeName">
+    <div class="result-hero">
+      <p class="kicker" id="resKicker">Your result</p>
+      <h2 class="mega result-name"><span class="riso" id="typeName">The Pragmatist</span></h2>
+      <p class="result-sub" id="typeSub">Centrist</p>
+      <p class="result-text" id="typeText"></p>
+      <div class="chips" id="chips"></div>
+      <div class="cta-row">
+        <button class="btn btn-primary" id="shareBtn" type="button">Copy result link</button>
+        <button class="btn btn-ghost" id="retakeBtn" type="button">Retake the quiz</button>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <figure class="panel compass-panel">
+        <figcaption class="panel-head">
+          <h3>Political map</h3>
+          <p>Economic axis (horizontal) against authority axis (vertical). The shaded ellipse shows the spread of individual answers.</p>
+        </figcaption>
+        <div class="compass-wrap" id="compassWrap"></div>
+        <div class="legend" id="compassLegend"></div>
+      </figure>
+
+      <div class="panel scores-panel">
+        <div class="panel-head">
+          <h3>Scores</h3>
+          <p>Each axis runs from &minus;10 to +10. Zero is the centre.</p>
+        </div>
+        <div id="gauges"></div>
+      </div>
+    </div>
+
+    <div class="panel issues-panel">
+      <div class="panel-head">
+        <h3>Issue profile</h3>
+        <p>Position on each issue, measured on the axis that issue mainly tests. Hover or tap a bar for the underlying answers.</p>
+      </div>
+      <div id="issueBars"></div>
+    </div>
+
+    <div class="panel" id="outlierPanel">
+      <div class="panel-head">
+        <h3>Departures from the overall profile</h3>
+        <p>Issues where positions differ by 6 or more points from the overall score on the same axis.</p>
+      </div>
+      <div class="outliers" id="outliers"></div>
+    </div>
+
+    <details class="panel details">
+      <summary>Answers and question weights</summary>
+      <div class="table-wrap"><table class="atable" id="answerTable"></table></div>
+    </details>
+
+    <details class="panel details">
+      <summary>Method</summary>
+      <div class="method">
+        <p>Answers map to +2 (Absolutely), +1 (Yeah), &minus;1 (Nah) and &minus;2 (No way). Each question carries a weight on every dimension, between &minus;1 and +1, describing the effect of a &ldquo;yes&rdquo;. An axis score equals the weighted sum of answers divided by the largest possible sum, scaled to &minus;10&hellip;+10. &ldquo;Not sure&rdquo; answers are excluded rather than counted as zero, so uncertainty does not pull a result toward the centre.</p>
+        <p>On each axis, the questions where agreeing moves the score up carry roughly the same total weight as those where agreeing moves it down, so a habit of agreeing with everything cancels out. Authority questions are drawn from all four corners: state power favored by the left (vaccine mandates, content moderation, emissions rules) and by the right (deportation, federal deployments, library removals).</p>
+        <p>The ellipse radius equals half the weighted standard deviation of the answer-level positions on each axis. A consistency rating of <em>Consistent</em>, <em>Mixed</em> or <em>Cross-pressured</em> follows from the average spread. Classification uses a 3 &times; 3 grid with boundaries at &plusmn;3.3; the culture reading uses &plusmn;3.</p>
+        <p>The &ldquo;Typical Democrat&rdquo; and &ldquo;Typical Republican&rdquo; markers are illustrative: they are answer sets built from majority positions in public polling and scored with the same method. They are not survey medians.</p>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Right or Left &middot; An independent, non-partisan quiz. Question weights are editorial judgments, not survey data.</p>
+</footer>
+
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
