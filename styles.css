@@ -298,6 +298,14 @@ main { flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px 
   padding: clamp(18px, 3vw, 28px); margin: 0 0 20px; box-shadow: var(--shadow);
 }
 .result-grid .panel { margin: 0; }
+.history { margin-top: 40px; }
+.history[hidden], #saveBtn[hidden] { display: none; }
+.history-list { list-style: none; margin: 0 0 8px; padding: 0; }
+.history-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line, rgba(128,128,128,.3)); }
+.history-list li:first-child { border-top: 0; }
+.history-list .h-main { flex: 1; min-width: 0; text-align: left; background: none; border: 0; cursor: pointer; color: var(--ink); font: inherit; padding: 0; }
+.history-list .h-main:hover b { text-decoration: underline; }
+.history-list .h-main span { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
 .panel-head h3 { margin: 0; font-size: 24px; letter-spacing: -.03em; }
 .panel-head p { margin: 4px 0 18px; color: var(--ink-2); font-size: 15px; }
 

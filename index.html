@@ -79,6 +79,15 @@
         <p>Views on gender, race, religion and national identity, scored on their own.</p>
       </article>
     </div>
+
+    <div class="panel history" id="historyPanel" hidden>
+      <div class="panel-head">
+        <h3>Previous results</h3>
+        <p>Stored only in this browser. Clearing site data removes them.</p>
+      </div>
+      <ul class="history-list" id="historyList"></ul>
+      <button class="link-btn" id="clearHistoryBtn" type="button">Clear all</button>
+    </div>
   </section>
 
   <!-- Quiz -->
@@ -121,6 +130,7 @@
       <div class="chips" id="chips"></div>
       <div class="cta-row">
         <button class="btn btn-primary" id="shareBtn" type="button">Copy result link</button>
+        <button class="btn btn-ghost" id="saveBtn" type="button" hidden>Save to history</button>
         <button class="btn btn-ghost" id="retakeBtn" type="button">Retake the quiz</button>
       </div>
     </div>

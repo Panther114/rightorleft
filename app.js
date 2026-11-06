@@ -149,9 +149,52 @@
     renderQuestion("enter-back");
   }
 
+  /* ---------- saved history (localStorage) ---------- */
+  const HKEY = "rol-history";
+  function loadHistory() {
+    try {
+      const h = JSON.parse(localStorage.getItem(HKEY) || "[]");
+      return Array.isArray(h) ? h.filter(x => x && E.decode(Q, x.code)) : [];
+    } catch (e) { return []; }
+  }
+  function saveHistory(list) { try { localStorage.setItem(HKEY, JSON.stringify(list)); } catch (e) {} }
+  function addHistory(code) {
+    const list = loadHistory();
+    if (list.some(x => x.code === code)) return false;
+    list.unshift({ code, ts: Date.now() });
+    saveHistory(list.slice(0, 50));
+    return true;
+  }
+  function renderHistory() {
+    const list = loadHistory();
+    $("#historyPanel").hidden = !list.length;
+    $("#historyList").innerHTML = list.map((x, i) => {
+      const s = E.score(Q, E.decode(Q, x.code));
+      const d = new Date(x.ts).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+      return `<li><button type="button" class="h-main" data-code="${x.code}"><b>${esc(Q.types[s.typeKey].name)}</b><span>${esc(d)} · E ${fmt(s.e)} · A ${fmt(s.a)} · C ${fmt(s.c)}</span></button><button type="button" class="link-btn" data-del="${i}" aria-label="Delete result">Delete</button></li>`;
+    }).join("");
+  }
+  $("#historyList").addEventListener("click", e => {
+    const del = e.target.closest("[data-del]");
+    if (del) {
+      const list = loadHistory(); list.splice(+del.dataset.del, 1); saveHistory(list); renderHistory(); return;
+    }
+    const open = e.target.closest("[data-code]");
+    if (open) location.hash = "r=" + open.dataset.code;
+  });
+  $("#clearHistoryBtn").addEventListener("click", () => {
+    if (confirm("Delete all saved results from this browser?")) { saveHistory([]); renderHistory(); }
+  });
+  $("#saveBtn").addEventListener("click", () => {
+    const m = location.hash.match(/^#r=([A-EN]+)$/);
+    if (m && E.decode(Q, m[1])) { toast(addHistory(m[1]) ? "Saved to history" : "Already in history"); renderHistory(); $("#saveBtn").hidden = true; }
+  });
+
   function finish() {
     showScreen("calc");
     const code = E.encode(Q, state.answers);
+    addHistory(code);
+    renderHistory();
     history.replaceState(null, "", "#r=" + code);
     setTimeout(() => showResults(state.answers, false), 1500);
   }
@@ -183,6 +226,7 @@
     $("#typeSub").textContent = `${type.label} · ${s.culture}`;
     $("#typeText").textContent = type.text;
     $("#retakeBtn").textContent = shared ? "Take the quiz" : "Retake the quiz";
+    $("#saveBtn").hidden = !shared || loadHistory().some(x => x.code === E.encode(Q, answers));
 
     const lowData = s.answered < 8;
     const chips = [
@@ -441,5 +485,6 @@
     if (decoded) showResults(decoded, true);
   }
   window.addEventListener("hashchange", boot);
+  renderHistory();
   boot();
 })();
