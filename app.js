@@ -74,7 +74,7 @@
 
   /* ---------- quiz ---------- */
   const answersEl = $("#answers");
-  const GLYPH = ["g-yes2", "g-yes1", "g-mid", "g-no1", "g-no2"];
+  const GLYPH = ["g-no2", "g-no1", "g-mid", "g-yes1", "g-yes2"];
   Q.answers.forEach((a, i) => {
     const b = document.createElement("button");
     b.type = "button";

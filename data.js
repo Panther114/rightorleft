@@ -4,30 +4,30 @@
 
 window.QUIZ = {
   questions: [
-    { id: 1,  issue: "immigration", q: "Should we deport undocumented immigrants who have lived here for 10+ years and never committed a crime?", e: 0, a: 0.6, c: 0.6 },
-    { id: 2,  issue: "taxes", q: "Should we cut taxes for top earners and corporations to juice economic growth?", e: 0.8, a: 0, c: 0.1 },
-    { id: 3,  issue: "abortion", q: "Should abortion be legal in every state up to fetal viability (around 24 weeks)?", e: 0, a: -0.5, c: -0.8 },
-    { id: 4,  issue: "speech", q: "Should the government lean on social media companies to take down false health and election posts?", e: 0, a: 0.7, c: -0.3 },
-    { id: 5,  issue: "health", q: "Should we scrap private health insurance and put everyone on one government plan?", e: -0.9, a: 0.2, c: -0.2 },
-    { id: 6,  issue: "guns", q: "Should any law-abiding adult be able to buy an AR-15 without a federal license?", e: 0, a: -0.8, c: 0.4 },
-    { id: 7,  issue: "federal", q: "Should the president send the National Guard into high-crime cities, even if the mayor says no?", e: 0, a: 0.9, c: 0.3 },
-    { id: 8,  issue: "gender", q: "Should doctors be allowed to prescribe puberty blockers to trans teens when parents consent?", e: 0, a: -0.5, c: -0.8 },
-    { id: 9,  issue: "labor", q: "Should Uber and DoorDash be allowed to keep treating drivers as contractors instead of employees?", e: 0.7, a: -0.1, c: 0 },
-    { id: 10, issue: "education", q: "Should school libraries pull books with sexual content when parents object, even award winners?", e: 0, a: 0.5, c: 0.7 },
-    { id: 11, issue: "drugs", q: "Should getting caught with a small amount of any drug mean a ticket to treatment instead of jail?", e: 0, a: -0.8, c: -0.4 },
-    { id: 12, issue: "trade", q: "Should we slap big tariffs on imports to bring factories home, even if prices go up?", e: -0.3, a: 0.3, c: 0.5 },
-    { id: 13, issue: "vaccines", q: "Should parents be able to skip school vaccine requirements for religious or personal reasons?", e: 0, a: -0.6, c: 0.4 },
-    { id: 14, issue: "taxes", q: "Should we raise the federal minimum wage to $17 an hour?", e: -0.8, a: 0, c: -0.1 },
-    { id: 15, issue: "dei", q: "Should Washington cut funding to universities that run race-conscious diversity programs?", e: 0, a: 0.6, c: 0.6 },
-    { id: 16, issue: "education", q: "Should families get to spend public school money on private or religious schools?", e: 0.6, a: -0.3, c: 0.4 },
-    { id: 17, issue: "gender", q: "Should trans women be able to compete in women's sports?", e: 0, a: 0, c: -0.9 },
-    { id: 18, issue: "climate", q: "Should we ban sales of new gas-powered cars by 2035, even if cars get pricier?", e: -0.5, a: 0.6, c: -0.4 },
-    { id: 19, issue: "federal", q: "Should the Fed and other independent agencies be shielded from a president firing their leaders?", e: 0, a: -0.5, c: -0.2 },
-    { id: 20, issue: "health", q: "Should people on Medicaid or food stamps have to work or job-hunt to keep their benefits?", e: 0.6, a: 0.2, c: 0.3 },
-    { id: 21, issue: "housing", q: "Should we scrap zoning rules that ban apartment buildings in single-family neighborhoods?", e: 0.3, a: -0.5, c: -0.3 },
-    { id: 22, issue: "speech", q: "Should AI labs need a federal license before releasing their most powerful models?", e: -0.3, a: 0.5, c: 0 },
-    { id: 23, issue: "immigration", q: "Should we let in more legal immigrants and refugees every year?", e: 0.1, a: 0, c: -0.7 },
-    { id: 24, issue: "labor", q: "Should big companies have to publish what they pay workers by race and gender?", e: -0.4, a: 0.4, c: -0.5 }
+    { id: 1,  issue: "immigration", q: "Should immigrants who have lived here illegally for 10+ years and have no criminal record be deported?", e: 0, a: 0.6, c: 0.6 },
+    { id: 2,  issue: "taxes", q: "Should taxes be cut for the richest people and big corporations to help the economy grow?", e: 0.8, a: 0, c: 0.1 },
+    { id: 3,  issue: "abortion", q: "Should abortion be legal in every state until the baby could survive outside the womb (about 24 weeks)?", e: 0, a: -0.5, c: -0.8 },
+    { id: 4,  issue: "speech", q: "Should the government pressure social media companies to remove false posts about health or elections?", e: 0, a: 0.7, c: -0.3 },
+    { id: 5,  issue: "health", q: "Should private health insurance be replaced by one government health plan for everyone?", e: -0.9, a: 0.2, c: -0.2 },
+    { id: 6,  issue: "guns", q: "Should any adult without a criminal record be able to buy an AR-15 rifle without a federal license?", e: 0, a: -0.8, c: 0.4 },
+    { id: 7,  issue: "federal", q: "Should the president be able to send the National Guard into high-crime cities even if the mayor objects?", e: 0, a: 0.9, c: 0.3 },
+    { id: 8,  issue: "gender", q: "Should doctors be allowed to give puberty-blocking drugs to transgender teens if their parents agree?", e: 0, a: -0.5, c: -0.8 },
+    { id: 9,  issue: "labor", q: "Should Uber and DoorDash be allowed to treat drivers as independent contractors instead of employees?", e: 0.7, a: -0.1, c: 0 },
+    { id: 10, issue: "education", q: "Should school libraries remove books with sexual content when parents complain, even award-winning ones?", e: 0, a: 0.5, c: 0.7 },
+    { id: 11, issue: "drugs", q: "Should people caught with a small amount of any drug get treatment instead of jail?", e: 0, a: -0.8, c: -0.4 },
+    { id: 12, issue: "trade", q: "Should the US put high taxes on imported goods to bring factories back, even if prices go up?", e: -0.3, a: 0.3, c: 0.5 },
+    { id: 13, issue: "vaccines", q: "Should parents be allowed to skip required school vaccines for religious or personal reasons?", e: 0, a: -0.6, c: 0.4 },
+    { id: 14, issue: "taxes", q: "Should the federal minimum wage be raised to $17 an hour?", e: -0.8, a: 0, c: -0.1 },
+    { id: 15, issue: "dei", q: "Should the federal government cut funding to colleges that run race-based diversity programs?", e: 0, a: 0.6, c: 0.6 },
+    { id: 16, issue: "education", q: "Should parents be able to use public school funding to pay for private or religious schools?", e: 0.6, a: -0.3, c: 0.4 },
+    { id: 17, issue: "gender", q: "Should transgender women be allowed to compete in women's sports?", e: 0, a: 0, c: -0.9 },
+    { id: 18, issue: "climate", q: "Should selling new gas-powered cars be banned after 2035, even if cars cost more?", e: -0.5, a: 0.6, c: -0.4 },
+    { id: 19, issue: "federal", q: "Should the president be barred from firing the heads of the Federal Reserve (which sets interest rates) and other independent agencies?", e: 0, a: -0.5, c: -0.2 },
+    { id: 20, issue: "health", q: "Should people on Medicaid or food stamps be required to work or look for a job to keep their benefits?", e: 0.6, a: 0.2, c: 0.3 },
+    { id: 21, issue: "housing", q: "Should cities end rules that only allow single-family homes in some neighborhoods, so apartments can be built there?", e: 0.3, a: -0.5, c: -0.3 },
+    { id: 22, issue: "speech", q: "Should AI companies need a federal license before releasing their most powerful AI systems?", e: -0.3, a: 0.5, c: 0 },
+    { id: 23, issue: "immigration", q: "Should the US allow more legal immigrants and refugees each year?", e: 0.1, a: 0, c: -0.7 },
+    { id: 24, issue: "labor", q: "Should large companies be required to publicly report what they pay workers by race and gender?", e: -0.4, a: 0.4, c: -0.5 }
   ],
 
   /* Issue groups. axis = the dimension on which the group is reported in the issue profile. */
@@ -57,11 +57,11 @@ window.QUIZ = {
   },
 
   answers: [
-    { v: 2,    label: "Absolutely", stamp: "ABSOLUTELY" },
-    { v: 1,    label: "Yeah", stamp: "YEAH" },
-    { v: null, label: "Not sure", stamp: "HMM" },
+    { v: -2,   label: "Fuck no", stamp: "FUCK NO" },
     { v: -1,   label: "Nah", stamp: "NAH" },
-    { v: -2,   label: "No way", stamp: "NO WAY" }
+    { v: null, label: "Not sure", stamp: "HMM" },
+    { v: 1,    label: "Yeah", stamp: "YEAH" },
+    { v: 2,    label: "Fuck yes", stamp: "FUCK YES" }
   ],
 
   /* Illustrative reference profiles built from majority positions in public polling.
